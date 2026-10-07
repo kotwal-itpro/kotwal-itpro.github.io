@@ -1,0 +1,13 @@
+title: Ankur Kotwal
+description: Notes on data infrastructure, distributed systems and running LLMs at scale.
+author: Ankur Kotwal
+url: https://kotwal-itpro.github.io
+theme: minima
+permalink: /:year/:month/:day/:title/
+minima:
+  social_links:
+    github: kotwal-itpro
+    linkedin: ankur-kotwal
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
