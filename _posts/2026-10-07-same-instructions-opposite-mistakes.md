@@ -71,3 +71,26 @@ That failed attempt also left my uploaded file sitting on Google's servers. I've
 Over the next couple of days I'll run the exact same job again, to see whether the models give the same answers each time. After that I'll try much bigger jobs, 100,000 chats and more, and add more providers.
 
 Everything is public: the code, the fake chats, and every result. It's all on GitHub at [kotwal-itpro/steadybatch](https://github.com/kotwal-itpro/steadybatch), including a [log of everything I found](https://github.com/kotwal-itpro/steadybatch/blob/main/docs/FINDINGS.md), my own early mistake included. If you run batch jobs like this and have seen something strange, I'd love to hear about it.
+
+## Update, October 7: I added Claude
+
+After writing this, I ran the same 1,000 chats through Anthropic's Claude, using its small model, Haiku 5.5. Two things stood out.
+
+**It was the first model to lose an answer.** Out of the box, this model decides for itself when to stop and "think" before answering. Usually it doesn't. But on 10 chats it thought for so long that it ran out of room before finishing its answer. Some answers came back empty, and some were cut off halfway. My tool caught every one and asked again. Nine came back fine on the second or third try. One never did, so this run ended at 999 out of 1,000.
+
+The room I'd given it was about eight times what a normal answer needs. It was the same limit I'd used for OpenAI and Gemini without any trouble. If you use a model like this, either give it much more room than you think it needs, or turn the thinking off.
+
+**One setting flipped its mistakes.** So I ran it again with thinking turned off. This time all 1,000 came back on the first try, in half the time: about 5 minutes instead of 10.
+
+On "how does the customer feel", Claude scored about the same both times, 89% and 91%. That's between OpenAI and Gemini. But look at how it got things wrong:
+
+- **With thinking on, it was mostly too forgiving, like Gemini.** "How do I reset my phone? This is really frustrating." came back as neutral.
+- **With thinking off, it was mostly too negative, like OpenAI.** "My laptop stopped working after three days. Let me know what you need from me." came back as unhappy.
+
+It was the same model with the same instructions and one setting changed, and the mistakes went the other way. The two runs disagreed on about 1 chat in 9.
+
+That makes the main point of this post stronger. A score can stay the same while the answers underneath it change. If you depend on the counts, check which answers move, not just the score.
+
+It was also the cheapest of the three: about 5 cents per 1,000 chats, against 8 to 9 cents for OpenAI and Gemini.
+
+Next up: the same test on a model I run myself on a rented GPU, and then much bigger jobs.
