@@ -80,14 +80,16 @@ After writing this, I ran the same 1,000 chats through Anthropic's Claude, using
 
 The room I'd given it was about eight times what a normal answer needs. It was the same limit I'd used for OpenAI and Gemini without any trouble. If you use a model like this, either give it much more room than you think it needs, or turn the thinking off.
 
-**One setting flipped its mistakes.** So I ran it again with thinking turned off. This time all 1,000 came back on the first try, in half the time: about 5 minutes instead of 10.
+**One setting changed its mistakes.** So I ran it again with thinking turned off. This time all 1,000 came back on the first try, in half the time: about 5 minutes instead of 10.
 
 On "how does the customer feel", Claude scored about the same both times, 89% and 91%. That's between OpenAI and Gemini. But look at how it got things wrong:
 
-- **With thinking on, it was mostly too forgiving, like Gemini.** "How do I reset my phone? This is really frustrating." came back as neutral.
-- **With thinking off, it was mostly too negative, like OpenAI.** "My laptop stopped working after three days. Let me know what you need from me." came back as unhappy.
+- **With thinking on, its mistakes were split about evenly.** Sometimes too forgiving ("How do I reset my phone? This is really frustrating." came back as neutral), sometimes too harsh.
+- **With thinking off, almost all of them were too harsh, like OpenAI.** "My laptop stopped working after three days. Let me know what you need from me." came back as unhappy.
 
-It was the same model with the same instructions and one setting changed, and the mistakes went the other way. The two runs disagreed on about 1 chat in 9.
+Same model, same instructions, one setting changed, and the balance of its mistakes changed with it. The two runs disagreed on about 1 chat in 9.
+
+*Correction, Oct 9: an earlier version said that with thinking on, Claude was "mostly too forgiving". Counting every mistake, they were about evenly split.*
 
 That makes the main point of this post stronger. A score can stay the same while the answers underneath it change. If you depend on the counts, check which answers move, not just the score.
 
